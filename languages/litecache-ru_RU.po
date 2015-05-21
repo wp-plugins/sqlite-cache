@@ -1,0 +1,222 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: SQLite Cache v0.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-05-09 03:03+0200\n"
+"PO-Revision-Date: 2015-05-09 03:04+0200\n"
+"Last-Translator: Andrey K. <andrey271@bigmir.net>\n"
+"Language-Team: SQLite Cache <andrey271@bigmir.net>\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? "
+"1 : 2);\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;"
+"_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: D:\\OpenServ\\OpenServer\\domains\\dev2.andrey.ws\\www\\wp\\wp-content\\plugins"
+"\\sqlite-cache\n"
+
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:35
+msgid "SQLite Cache Settings"
+msgstr "Настройки SQLite кэширования"
+
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:45
+msgid "SQLite cache storage directory and settings"
+msgstr "Директория и настройки SQLite кэш"
+
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:47
+msgid "Your WordPress installation parameters:"
+msgstr "Параметры вашей установки WordPress:"
+
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:53
+msgid ""
+"These settings will be applied for all WordPress sites installed into one common directory or for all sites "
+"of WordPress MultiSite installation. One SQLite cache database can serve dozens of sites."
+msgstr ""
+"Эти настройки будут применены ко всем WordPress-сайтам, установленным в одной папке или для всех сайтов в "
+"установке WordPress MultiSite. Одна база SQLite может работать как кэш для десятков сайтов."
+
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:54
+msgid "SQLite database directory path, full path"
+msgstr "Полный путь директории для базы данных SQLite"
+
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:58
+msgid "Compress cached data"
+msgstr "Сжимать кэшированные данные"
+
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:70
+msgid ""
+"Directory for cache is not defined yet. Enter path into the following field. If it is not exist the attempt "
+"to create it will be performed."
+msgstr ""
+"Директория для кэш еще не указана. Введите путь в соответствующем поле. Если она не существует, будет "
+"предпринята попытка создать её."
+
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:77
+#, php-format
+msgid "To get cache working you must add manually the following lines in the top of %s file:"
+msgstr "Чтобы кэширование заработало, нужно добавить следующие строки в начале файла %s."
+
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:84
+#, php-format
+msgid "%s per domain settings"
+msgstr "Настройки для домена %s"
+
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:92
+#, php-format
+msgid "File %s doesn't exist yet. Submit «%s» form to attempt create it."
+msgstr "Файл %s ещё не существует. Чтобы попробовать создать его, нажмите кнопку в форме «%s»."
+
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:99
+msgid ""
+"Cache is not active yet: you need to set cache expiration term. 1 hour = 3600 seconds, 1 day = 86400 seconds."
+msgstr ""
+"Кэширование еще не действует: нужно указать срок устаревания. 1 час = 3600 секунд, 1 сутки = 86400 секунд."
+
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:102
+msgid "Exclude cache for paths, one expression per line"
+msgstr "Не кэшировать эти пути, по одному выражению на строку"
+
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:105
+msgid "regular expression for <code>REQUEST_URI</code>. Leave empty field to cache all."
+msgstr "регулярное выражение для <code>REQUEST_URI</code>. Если пусто, то кэшируется всё."
+
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:107
+msgid "Expire cached pages after"
+msgstr "Кєшированные страницы устаревают через"
+
+# @ default
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:108
+msgid "seconds"
+msgstr "секунд"
+
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:111
+msgid "Show performance time"
+msgstr "Показывать время выполнения"
+
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:113
+msgid "for testing"
+msgstr "для тестирования"
+
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:117
+msgid "Include HTTP headers"
+msgstr "Включать HTTP-заголовки"
+
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:124
+msgid "recommended to save traffic"
+msgstr "рекомендуется для экономии траффика"
+
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:131
+msgid "Purge Cache for Domain"
+msgstr "Очистить кэш для домена"
+
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:133
+#, php-format
+msgid "Pattern to purge (substring of %s)"
+msgstr "Шаблон для очистки (подстрока %s)"
+
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:135
+msgid "Leave empty field to purge all."
+msgstr "Оставьте пустым, чтобы очистить всё."
+
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:136
+msgid "Purge Cache"
+msgstr "Очистить кэш"
+
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:138
+msgid ""
+"Cache is not used for authorized users and for visitors who has commenter's cookie (leaved a comment "
+"recently) or open PHP session."
+msgstr ""
+"Кэш не используется для залогиненных пользователей, для посетителей с установленным куком комментатора (кто "
+"недавно оставлял комментарий) или с открытой PHP сессией."
+
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:139
+msgid "Cache of an updated/deleted/trashed page or single post will be cleared by the plugin automatically."
+msgstr "При обновлении/удалении/отправке в корзину страницы или записи её кэш очищается автоматически."
+
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:140
+msgid "Cache for a commented post or page on new comment will be cleared too."
+msgstr "Кэш страницы или записи при поступлении нового комментария тоже очищается."
+
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:141
+msgid ""
+"Don't forget to clear cache after switch theme, change widgets, editing menus and other actions affecting "
+"site look."
+msgstr ""
+"Не забывайте очищать кэш после смены темы, изменения виджетов, редактирования меню и других действий, "
+"влияющих на вид сайта."
+
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:144
+msgid ""
+"To disable cache, deactivate the plugin. Remove inclusion of lite-cache.php from WordPress index.php before "
+"deleting the plugin."
+msgstr ""
+"Чтобы отключить кэш, деактивируйте плагин. Перед удалением плагина удалите подлючение lite-cache.php из "
+"файла WordPress index.php."
+
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:187
+msgid "Can not create a directory."
+msgstr "Не удалось создать директорию."
+
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:191
+msgid "This path is not a directory."
+msgstr "Этот путь не директория"
+
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:199
+msgid "Database file has not been created."
+msgstr "База данных не была создана."
+
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:227
+msgid "litecache.ini file has not been created/rewritten."
+msgstr "Файл litecache.ini не был создан или переписан."
+
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:264
+msgid "Domain ini file has not been created/rewritten."
+msgstr "ini-файл для домена не был создан или перезаписан."
+
+# @ litecache
+#: D:\OpenServ\OpenServer\domains\dev2.andrey.ws\www\wp\wp-content\plugins\sqlite-cache/wp-sqlite-cache.php:299
+msgid "Cache has been cleaned."
+msgstr "Кэш почищен"
+
+# @ litecache
+#~ msgid "Multi-Site/Super-Admin Settings"
+#~ msgstr "Мульти-сайт/супер-админ настройки"
+
+# @ litecache
+#~ msgid "To disable cache, deactivate the plugin."
+#~ msgstr "Чтобы отключить кэширование, деактивируйте плагин."
+
+# @ litecache
+#~ msgid "SQLite cache has been disabled"
+#~ msgstr "SQLite cache отключен"
+
+# @ litecache
+#~ msgid "Error while deleting SQLite domain ini file"
+#~ msgstr "Ошибка при удалении ini-файла домена"
