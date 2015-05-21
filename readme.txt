@@ -32,11 +32,12 @@ supports ETag, Expires, Content-Length, Content-Type (with charset) headers.
 
 == Installation ==
 
-* Upload the plugin from the WordPress plugin installation page or unpack
-`sqlite-cache` folder to the plugins directory (usually `wp-content/plugins/`).
+* Upload the plugin from the WordPress plugin installation page or
+unpack `sqlite-cache` folder to the plugins directory
+(usually `wp-content/plugins/`).
 
 * Activate the plugin through the WordPress Plugins manager, then you
-will see 'SQLite Cache' item in the `Settings` submenu of WordPress admin menu.
+will see `SQLite Cache` item in the `Settings` submenu of WordPress admin menu.
 
 * Forms on the the plugin settings page:
 1. Define a directory where the plugin settings and the cache storage
@@ -104,8 +105,8 @@ in the same directory until it is included in the `index.php`.
 
 = As the cache script doesn't load the WordPress core where does it save it's settings? =
 
-* To get the plugin working you need to define the SQLite storage location in the
-`index.php` of the wordpress installation directory (note, not in wp-config.php
+* To get the plugin working you need to define the SQLite storage location in
+the `index.php` of the wordpress installation directory (note, not in wp-config.php
 but index.php). Besides of the SQLite file, this directory contains general
 settings file (compression setting) and a subfolder for per domain settings.
 In the admin area (plugin setting page) and to remember after deactivation where
