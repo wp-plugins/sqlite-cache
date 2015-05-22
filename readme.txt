@@ -45,8 +45,8 @@ will be located.
 1. Define cache expiration time and HTTP headers the cached pages will be
 delivered with.
 1. Third form is for cleaning cache. Note the cache will be cleared every
-time when you submit the second form so you don't need to clear cache
-after changing plugin settings.
+time when you submit the domain settings form so you don't need to clear cache
+after changing settings.
 
 * Add two lines into `index.php` file (you will be notified on the settings page)
 to define where the cache storage is located and include the cache engine file.
@@ -99,13 +99,14 @@ with Location header.
 Click on Deactivate link on the plugins list, then the settings file
 (yourdomain.ini) will be deleted so cache engine will not be applied for
 the current domain. However it stays working for other sites installed
-in the same directory until it is included in the `index.php`.
+in the same directory until it is included in the `index.php` and their
+setting files exist.
 
 == Other notes ==
 
 = As the cache script doesn't load the WordPress core where does it save it's settings? =
 
-* To get the plugin working you need to define the SQLite storage location in
+To get the plugin working you need to define the SQLite storage location in
 the `index.php` of the wordpress installation directory (note, not in wp-config.php
 but index.php). Besides of the SQLite file, this directory contains general
 settings file (compression setting) and a subfolder for per domain settings.
@@ -114,7 +115,7 @@ the cache located, `litecache_path` WordPress option is used.
 
 = How the plugin handles URLs with and without `www.` prefix? =
 
-The presense of `www.` prefix is defined in Parameters - General.
+The presence of `www.` prefix is defined in `Parameters` - `General`.
 The plugin stores `with_www` parameter in `domains/yourdomain.ini` file in the
 cache directory and redirects requests correspondingly; these redirects are
 being processed before cache usage.
@@ -123,7 +124,7 @@ being processed before cache usage.
 
 Yes, but for subdomains mode only (blogname.example.com), not for
 example.com/blogname. A superadmin of a multisite network has access to
-the first setting form (cache location) and blog admins have access to the
+the first setting form (cache location), blog admins have access to the
 second form and purge form.
 
 == Changelog ==
