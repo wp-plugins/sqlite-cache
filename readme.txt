@@ -48,7 +48,7 @@ delivered with.
 time when you submit the second form so you don't need to clear cache
 after changing plugin settings.
 
-* Add two lines into `index.php` file (will be notified on the settins page)
+* Add two lines into `index.php` file (you will be notified on the settings page)
 to define where the cache storage is located and include the cache engine file.
 
 Done! For testing, enable `Show performance time` checkbox to ensure
