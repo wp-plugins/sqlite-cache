@@ -115,7 +115,7 @@ the cache located, `litecache_path` WordPress option is used.
 
 = How the plugin handles URLs with and without `www.` prefix? =
 
-The presence of `www.` prefix is defined in `Parameters` - `General`.
+The presence of `www.` prefix is defined in `Settings` - `General`.
 The plugin stores `with_www` parameter in `domains/yourdomain.ini` file in the
 cache directory and redirects requests correspondingly; these redirects are
 being processed before cache usage.
