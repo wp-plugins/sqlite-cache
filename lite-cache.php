@@ -38,23 +38,28 @@ class Litecache {
       header('Location: ' . $schema . $this->domain . $_SERVER['REQUEST_URI']);
       die;
     }
-
     if ( !$this->exclude() ) {
       $this->check();
       if ('HEAD' == $_SERVER['REQUEST_METHOD']) {
         return; // the content for HEAD method must not be included into cache storage as this content is empty!
       }
-      ob_start(array('Litecache', 'handler'));
+      ob_start(array($this, 'handler'));
     }
   }
 
-  private function handler($str) {
+  public function handler($str = '') {
     $now = time();
-    $data = $this->compress ? (gzcompress($str)) : $str;
+    $data = $this->compress && ('' !== $str) ? gzcompress($str) : $str;
     $expire = $now + $this->settings['expire'];
     $sql = "INSERT INTO 'html_cache' ('hash', 'domain', 'request_uri', 'content', 'expire', 'headers')
       VALUES (:hash, :domain, :request_uri, :content, :expire, :headers)";
-    $q = $this->pdo->prepare($sql);
+    if ( $this->pdo ) {
+      $prepared = $this->pdo->prepare($sql);
+    }
+    else {
+      error_log('Litecache::handler: SQLite PDO object does not exist.');
+      return $str;
+    }
 
     $headers_list = headers_list();
     $code = http_response_code();
@@ -82,6 +87,7 @@ class Litecache {
     elseif ( 404 == $code ) {
       $headers = array( 'response_code' => $code );
       $data = 'Error: 404 Not Found';
+      $data = $this->compress ? gzcompress($data) : $data;
     }
     elseif ( 301 == $code || 302 == $code ) {
       $headers['response_code'] = $code;
@@ -97,7 +103,7 @@ class Litecache {
       ':headers' => $headers ? serialize($headers) : '',
     );
 
-    $q->execute($values);
+    $prepared->execute($values);
     $this->timer[] = microtime(1);
     return $str . ($this->settings['timer'] ? 'NO CACHE: ' . ($this->timer[1] - $this->timer[0]) : '');
   }
@@ -143,9 +149,8 @@ class Litecache {
       $this->pdo = new PDO('sqlite:' . LITECACHE_PATH . '/db.sqlite');
     }
     catch(PDOException $e) {
-      echo $e->getMessage();
-      echo ' sqlite open failed ' . $str;
-      die;
+      error_log($e->getMessage());
+      return;
     }
 
     $sql_select = 'SELECT * FROM "html_cache" WHERE "domain" = "' . $this->domain .'" AND "hash" = "' . $this->hash . '";';
@@ -165,9 +170,10 @@ class Litecache {
         http_response_code( $code );
         if ( 301 == $code || 302 == $code ) {
           header('Location: ' . $headers['Location']);
+          die;
         }
         elseif ( $code >= 400 ) {
-          echo $this->compress ? gzuncompress(($one['content'])) : $one['content'];
+          echo $this->compress && ( '' !== $one['content'] ) ? gzuncompress($one['content']) : $one['content'];
         }
         die;
       }
@@ -194,7 +200,7 @@ class Litecache {
         }
       }
 
-      echo $this->compress ? gzuncompress(($one['content'])) : $one['content'];
+      echo $this->compress && ( '' !== $one['content'] ) ? gzuncompress($one['content']) : $one['content'];
       if ($this->settings['timer']) {
         $this->timer[] = microtime(1);
         echo ' ' . sprintf('CACHED: %16.13f', $this->timer[1] - $this->timer[0]);

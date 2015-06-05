@@ -1,7 +1,7 @@
 === SQLite Cache ===
 Contributors: andreyk
 Tags: cache, performance, sqlite
-Stable tag: 0.6
+Stable tag: 0.6.1
 Author: Andrey K.
 Author URI: http://andrey.eto-ya.com/
 Plugin URI: http://andrey.eto-ya.com/wp-sqlite-cache
@@ -128,6 +128,12 @@ the first setting form (cache location), blog admins have access to the
 second form and purge form.
 
 == Changelog ==
+
+0.6.1
+
+* Improved usability on multisite: get_site_option instead of get_option (update, delete).
+* Cleaning code (check input before gzcompress/uncompress, bug fix in ob_start).
+* Ukrainian translation.
 
 0.6
 First public version.

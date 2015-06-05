@@ -1,11 +1,8 @@
 <?php
 /**
 Plugin Name: SQLite Cache
-Description: Provides SQLite cache storage that is applied before WordPress core
-load. Does not create multiple html files but stores all pages in one file.
-Dozens of sites on the same webserver may use common SQLite storage.
-Compatible with WordPress Multisite.
-Version: 0.6
+Description: Provides SQLite cache storage that is applied before WordPress core load. Does not create multiple html files but stores all pages in one file. Dozens of sites on the same webserver may use common SQLite storage. Compatible with WordPress Multisite.
+Version: 0.6.1
 Author: Andrey K.
 Author URI: http://andrey.eto-ya.com/
 Plugin URI: http://andrey.eto-ya.com/wp-sqlite-cache
@@ -46,7 +43,7 @@ function litecache_menu() {
 }
 
 function litecache_settings_page() {
-  $litecache_path = get_option('litecache_path');
+  $litecache_path = get_site_option('litecache_path');
   if ( is_dir($litecache_path) && ($par = @parse_ini_file($litecache_path . '/litecache.ini')) ) {}
   else {
     $par = array('compress' => '',);
@@ -71,10 +68,10 @@ textarea, input[type="text"] {max-width: 100%;}
 <p><?php _e('Your WordPress installation parameters:', 'litecache'); ?> </p>
 <p>WordPress home path: <code><?php echo get_home_path(); ?></code> </p>
 <p>$_SERVER[DOCUMENT_ROOT]: <code><?php echo $_SERVER['DOCUMENT_ROOT']; ?></code> </p>
-<p>WordPress installation ABSPATH constant: <code><?php echo ABSPATH; ?></code></p>
-<p>This plugin directory: <code><?php echo dirname(__FILE__); ?></code></p>
+<p><?php _e('WordPress installation ABSPATH constant', 'litecache'); ?>: <code><?php echo ABSPATH; ?></code></p>
+<p><?php _e('This plugin directory', 'litecache'); ?>: <code><?php echo dirname(__FILE__); ?></code></p>
 <p><em><?php _e('These settings will be applied for all WordPress sites installed into one common directory or for all sites of WordPress MultiSite installation. One SQLite cache database can serve dozens of sites.', 'litecache'); ?></em></p>
-<p><label for="litecache-path"><?php _e('SQLite database directory path, full path', 'litecache'); ?></label><br>
+<p><label for="litecache-path"><?php _e('SQLite database directory, full path', 'litecache'); ?></label><br>
   <input type="text" size="70" id="litecache-multisite-path" name="litecache_multisite[path]" value="<?php
     echo $litecache_path; ?>"/>
 </p>
@@ -113,9 +110,8 @@ if ( !file_exists($domain_ini) && $litecache_path) : ?>
   printf(__("File %s doesn't exist yet. Submit «%s» form to attempt create it.", 'litecache'), '<code>' . $domain_ini . '</code>', $title);
 ?></p></div>
 <?php else :
-  $param = @parse_ini_file($domain_ini);
+  $param = parse_ini_file($domain_ini);
 endif;
-
 if ( empty($param['expire']) ) : ?>
   <div class="error"><p><?php _e('Cache is not active yet: you need to set cache expiration term. 1 hour = 3600 seconds, 1 day = 86400 seconds.', 'litecache'); ?></p></div>
 <?php endif; ?>
@@ -126,25 +122,25 @@ if ( empty($param['expire']) ) : ?>
 <?php _e('regular expression for <code>REQUEST_URI</code>. Leave empty field to cache all.', 'litecache'); ?></p>
 <p>
   <label for="litecache-domain-expire"><?php _e('Expire cached pages after', 'litecache'); ?></label>
-  <input type="text"  size="12" id="litecache-domain-expires" name="litecache_domain[expire]" value="<?php echo $param['expire']; ?>" /> <?php _e('seconds', 'litecache'); ?>
+  <input type="text"  size="12" id="litecache-domain-expires" name="litecache_domain[expire]" value="<?php echo @$param['expire']; ?>" /> <?php _e('seconds', 'litecache'); ?>
 </p>
 <p>
 <label for="litecache-domain-timer"><?php _e('Show performance time', 'litecache'); ?></label>
   <input type="checkbox"  size="20" id="litecache-domain-timer" name="litecache_domain[timer]" value="1" <?php
-    echo $param['timer'] ? 'checked="checked"' : ''; ?> /> (<?php _e('for testing', 'litecache'); ?>)
+    echo @$param['timer'] ? 'checked="checked"' : ''; ?> /> (<?php _e('for testing', 'litecache'); ?>)
 </p>
 
 <p>
 <label><?php _e('Include HTTP headers', 'litecache'); ?>:</label><br>
   Content-Type with charset <input type="checkbox"  size="20" name="litecache_domain[Content-Type]" value="1" <?php
-    echo $param['Content-Type'] ? 'checked="checked"' : ''; ?> /> &nbsp;
+    echo @$param['Content-Type'] ? 'checked="checked"' : ''; ?> /> &nbsp;
   Content-Length <input type="checkbox"  size="20" name="litecache_domain[Content-Length]" value="1" <?php
-    echo $param['Content-Length'] ? 'checked="checked"' : ''; ?> />
+    echo @$param['Content-Length'] ? 'checked="checked"' : ''; ?> />
 <br>
   ETag <input type="checkbox"  size="20" name="litecache_domain[ETag]" value="1" <?php
-    echo $param['ETag'] ? 'checked="checked"' : ''; ?> /> &nbsp;
+    echo @$param['ETag'] ? 'checked="checked"' : ''; ?> /> &nbsp;
   Expires <input type="checkbox"  size="20" name="litecache_domain[Expires]" value="1" <?php
-    echo $param['Expires'] ? 'checked="checked"' : ''; ?> /> &nbsp; (<?php _e('recommended to save traffic', 'litecache'); ?>)
+    echo @$param['Expires'] ? 'checked="checked"' : ''; ?> /> &nbsp; (<?php _e('recommended to save traffic', 'litecache'); ?>)
 </p>
 <?php submit_button(); ?>
 </form>
@@ -173,7 +169,7 @@ function register_litecache() {
 }
 
 function litecache_deactivate() {
-  if ($path =  get_option('litecache_path')) {
+  if ($path =  get_site_option('litecache_path')) {
     unlink( $path . '/domains/' . LITECACHE_DOMAIN . '.ini');
   }
 }
@@ -193,7 +189,7 @@ function litecache_multisite($input) {
   $input['path'] = untrailingslashit(trim($input['path']));
 
   if ( empty($input['path']) ) {
-    delete_option('litecache_path');
+    delete_site_option('litecache_path');
     return;
   }
   if ( ! file_exists($input['path']) && ! mkdir($input['path']) ) {
@@ -238,7 +234,7 @@ function litecache_multisite($input) {
       sprintf(__('litecache.ini file has not been created/rewritten in %s.', 'litecache'), $input['path']), 'error');
     return;
   }
-  update_option('litecache_path', $input['path']);
+  update_site_option('litecache_path', $input['path']);
 }
 
 function litecache_domain($input) {
@@ -267,7 +263,7 @@ function litecache_domain($input) {
     }
   }
 
-  if ( !($path = get_option('litecache_path')) )
+  if ( !($path = get_site_option('litecache_path')) )
     return false;
   if ( !file_put_contents($path . '/domains/' . LITECACHE_DOMAIN . '.ini', $ini_out) ) {
     add_settings_error('litecache', 'domain_ini_file_not_written', __('Domain ini file has not been created/rewritten.', 'litecache'), 'error');
@@ -279,7 +275,7 @@ function litecache_domain($input) {
 
 function litecache_pdo() {
   try {
-    $pdo = new PDO('sqlite:' . get_option('litecache_path') . '/db.sqlite');
+    $pdo = new PDO('sqlite:' . get_site_option('litecache_path') . '/db.sqlite');
   }
   catch(PDOException $e) {
     echo $e->getMessage() . __LINE__;
@@ -324,7 +320,7 @@ function litecache_post_updated($post_ID, $post_after = false, $post_before = fa
     return;
   $purge[] = get_permalink($post_ID);
   if ( $post_before !== false && $post_before->post_type == 'post') {
-    $page_for_posts = get_option('page_for_posts');
+    $page_for_posts = get_site_option('page_for_posts');
     $purge[] = $page_for_posts ? get_permalink($page_for_posts) : home_url('/');
   }
 // To do: also clear cache for correnspondent category/tag page on post update.
